@@ -50,7 +50,23 @@ public class TorneoDaoMock implements ITorneoDao {
         // Este array no debe tener referencias nulas y su tamaño debe ser el justo
         TorneoFaseDto[] a = new TorneoFaseDto[torneos.length];
         int k = 0;
-
+        for (int i = 0; i < torneos.length; i++) {
+            Torneo t = torneos[i];
+            if (t != null) {
+                int idFaseTorneo = t.getFase();
+                String nombreFaseToreneo = null;
+                // BUSCAR LA FASE QUE LE CORRESPONDE
+                for (int j = 0; j < fases.length; j++) {
+                    Fase f = fases [i];
+                    if(f.getId() == idFaseTorneo) {
+                        nombreFaseToreneo = f.getNombre();
+                    }
+                }
+                TorneoFaseDto tf = new TorneoFaseDto(t.getId(), t.getNombre(), nombreFaseToreneo);
+                a[k] = tf;
+                k ++;
+            }
+        }
 
 
 
@@ -69,19 +85,19 @@ public class TorneoDaoMock implements ITorneoDao {
 
     private String getNombreEquipo(int idEquipo) {
         // TODO 05: Implementar la obtención del nombre del equipo por su id
-
-
-
-
-
-
+        for (int i = 0; i < usuarios.length; i++) {
+            Usuario u = usuarios[i];
+            if (u != null && u.getId() == idEquipo) {
+                return u.getNombre();
+            }
+        }
         return "";
     }
 
     @Override
     public Torneo getTorneo(int idTorneo) {
         // TODO 06: Implementar la búsqueda de torneo por id
-
+        
 
 
 
